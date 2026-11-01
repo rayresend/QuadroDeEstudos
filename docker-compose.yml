@@ -1,0 +1,33 @@
+services:
+  web:
+    build: ./web
+    ports:
+      - "8081:80"
+    depends_on:
+      - api
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgres://estudos:estudos123@db:5432/estudos
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: estudos
+      POSTGRES_PASSWORD: estudos123
+      POSTGRES_DB: estudos
+    volumes:
+      - dados:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U estudos -d estudos"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  dados:

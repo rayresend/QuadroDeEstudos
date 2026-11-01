@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quadro de Estudos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topo">
+      <h1>Quadro de Estudos</h1>
+      <div class="progresso">
+        <p id="resumo">0 de 0 tarefas concluídas</p>
+        <progress id="barra" max="100" value="0" aria-labelledby="resumo"></progress>
+      </div>
+    </header>
+
+    <form id="form-nova" class="nova">
+      <label>O que estudar
+        <input id="titulo" maxlength="80" required placeholder="Ex.: Resolver a lista de exercícios">
+      </label>
+      <label>Disciplina (opcional)
+        <input id="disciplina" maxlength="30" placeholder="Ex.: Cálculo">
+      </label>
+      <label>Prazo (opcional)
+        <input id="prazo" type="date">
+      </label>
+      <button class="btn" type="submit">Adicionar tarefa</button>
+    </form>
+
+    <p id="aviso" role="alert" hidden></p>
+    <div id="quadro" class="quadro"></div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
